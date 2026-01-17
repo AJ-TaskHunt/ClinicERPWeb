@@ -1,0 +1,254 @@
+<!-- <app-header></app-header> -->
+
+<!-- Content -->
+<!-- <div class="p-6 lg:p-8 space-y-6"> -->
+<div class="space-y-6">
+  <!-- Hero Banner -->
+  <div
+    class="rounded-xl border border-black/50 bg-gradient-to-br from-cyan-100 via-blue-100 to-green-100 p-8 md:p-12 relative overflow-hidden"
+  >
+    <div class="relative z-10">
+      <h1 class="text-3xl font-semibold text-black mb-2">Good Morning , Admin</h1>
+      <p class="text-xl text-black">Here's a quick overview of today's clinic activity</p>
+    </div>
+    <!-- Decorative illustration -->
+    <img
+      src="https://api.builder.io/api/v1/image/assets/TEMP/e1c2d1836a1cbfcd7347f2f53bdcbef043a03c41?width=2012"
+      alt=""
+      class="absolute right-0 top-0 h-full w-auto opacity-0.2"
+    />
+  </div>
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- Today Patients -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-base font-medium text-black mb-4">Today Patients</h3>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-16 h-16 rounded-full border-2 border-[#F38284] bg-white shadow-[0_4px_4px_0_#F26674] flex items-center justify-center"
+        >
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/ac3aecc0a5115e8be5bae7c66282136140876fa8?width=90"
+            alt=""
+            class="w-11 h-11"
+          />
+        </div>
+        <div>
+          <div class="text-3xl font-semibold text-black">142</div>
+          <div class="text-base text-black/50">Check - ins</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today Appointments -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-base font-medium text-black mb-4">Today Appointments</h3>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-16 h-16 rounded-full border-2 border-[#478CF7] bg-white shadow-[0_4px_4px_0_#1F8BCC] flex items-center justify-center"
+        >
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/78adb9fe29ede81afcbdc4f71ea147ae41196296?width=80"
+            alt=""
+            class="w-10 h-10"
+          />
+        </div>
+        <div>
+          <div class="text-3xl font-semibold text-black">85</div>
+          <div class="text-base text-black/50">Scheduled</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Today Revenue -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-base font-medium text-black mb-4">Today Revenue</h3>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-16 h-16 rounded-full border-2 border-[#33F5FF]/86 bg-white shadow-[0_4px_4px_0_#26C6DA] flex items-center justify-center"
+        >
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/cc7624588c329cf2f9d86a313a72be7f7141ad11?width=132"
+            alt=""
+            class="w-16 h-16 rounded-full object-cover"
+          />
+        </div>
+        <div>
+          <div class="text-3xl font-semibold text-black">$ 12,450</div>
+          <div class="text-base text-black/50">Processed</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Tasks -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-base font-medium text-black mb-4">Pending Tasks</h3>
+      <div class="flex items-center gap-4">
+        <div
+          class="w-16 h-16 rounded-full border-2 border-[#FF68AC] bg-white shadow-[0_4px_4px_0_#FF68AC] flex items-center justify-center"
+        >
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/e8e6347d4e0fcb01e387f89c82d708ca089def69?width=80"
+            alt=""
+            class="w-10 h-10"
+          />
+        </div>
+        <div>
+          <div class="text-3xl font-semibold text-black">18</div>
+          <div class="text-base text-black/50">Action required</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+    <button
+      class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors"
+    >
+      <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/2ed3ce55dc49977077bcd22dbf44740630dbc469?width=90"
+          alt=""
+          class="w-11 h-11"
+        />
+      </div>
+      <span class="text-base font-medium text-black text-center">Add New Patient</span>
+    </button>
+
+    <button
+      class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors"
+    >
+      <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/1ffe02fc65dd25aa9cf166a14984da1751904e43?width=90"
+          alt=""
+          class="w-11 h-11"
+        />
+      </div>
+      <span class="text-base font-medium text-black text-center">Book Appointment</span>
+    </button>
+
+    <button
+      class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors"
+    >
+      <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/3add4eda2bd384a849a8680882cedbabf1002e37?width=90"
+          alt=""
+          class="w-11 h-11"
+        />
+      </div>
+      <span class="text-base font-medium text-black text-center">Create Invoice</span>
+    </button>
+
+    <button
+      class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors"
+    >
+      <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/be044d9805dd1be448024686b9f21cb76952c7b6?width=90"
+          alt=""
+          class="w-11 h-11"
+        />
+      </div>
+      <span class="text-base font-medium text-black text-center">Add Medicine</span>
+    </button>
+
+    <button
+      class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-center gap-3 hover:bg-gray-50 transition-colors"
+    >
+      <div class="w-16 h-16 rounded-full border border-black flex items-center justify-center">
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/e78918767869b61e643ce36786119cdbb0cc9e79?width=80"
+          alt=""
+          class="w-10 h-10"
+        />
+      </div>
+      <span class="text-base font-medium text-black text-center">Upload Lab Report</span>
+    </button>
+  </div>
+
+  <!-- Two Column Layout -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <!-- Today's Appointments (2/3 width) -->
+    <div class="lg:col-span-2 bg-white rounded-xl border border-black/50 p-6">
+      <div class="flex items-center justify-between mb-6">
+        <h3 class="text-xl font-semibold text-black">Today's Appointments</h3>
+        <button class="text-base font-medium text-black/80 hover:text-black">View all</button>
+      </div>
+      <div class="space-y-3">
+        <div
+          *ngFor="let appointment of todayAppointments"
+          class="flex items-center gap-4 p-3 rounded-lg border border-black/10 bg-bg-card"
+        >
+          <div class="w-10 h-10 rounded-full border border-black/50 bg-white flex-shrink-0">
+            <img src="assets/images/users/image-53.png" alt="no" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-sm text-black">{{ appointment.name }}</div>
+          </div>
+          <div class="text-sm text-black">{{ appointment.time }}</div>
+          <div>
+            <span
+              [class]="getAppointmentStatusClass(appointment.status)"
+              class="inline-block px-4 py-1 rounded-lg text-sm"
+            >
+              {{ appointment.status }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Alerts (1/3 width) -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-xl font-semibold text-black mb-6">Important Alerts</h3>
+      <div class="space-y-4">
+        <div *ngFor="let alert of alerts" class="text-lg text-black">
+          {{ alert }}
+        </div>
+      </div>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-xl font-semibold text-black mb-6">Recent Activity</h3>
+      <div class="space-y-4">
+        <div *ngFor="let activity of recentActivities" class="flex items-start gap-4">
+          <div
+            [class]="getActivityIconColor(activity.type)"
+            class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5"
+          ></div>
+          <div class="flex-1">
+            <div class="text-base text-black">{{ activity.text }}</div>
+          </div>
+          <div class="text-xs text-black/50">{{ activity.time }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activity -->
+  <!--  <div class="bg-white rounded-xl border border-black/50 p-6">
+            <h3 class="text-xl font-semibold text-black mb-6">
+              Recent Activity
+            </h3>
+            <div class="space-y-4">
+              <div
+                *ngFor="let activity of recentActivities"
+                class="flex items-start gap-4"
+              >
+                <div
+                  [class]="getActivityIconColor(activity.type)"
+                  class="w-5 h-5 rounded-full flex-shrink-0 mt-0.5"
+                ></div>
+                <div class="flex-1">
+                  <div class="text-base text-black">{{ activity.text }}</div>
+                </div>
+                <div class="text-xs text-black/50">{{ activity.time }}</div>
+              </div>
+            </div>
+          </div> -->
+</div>

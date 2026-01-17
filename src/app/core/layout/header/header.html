@@ -1,0 +1,109 @@
+<header class="bg-bg-card px-6 py-4 flex items-center justify-between border-b border-black/5">
+  <!-- Left -->
+  <!-- Left -->
+  <div class="flex items-center gap-3">
+    <!-- Sidebar Toggle -->
+    <button
+      (click)="toggleSidebar.emit()"
+      class="p-2 rounded-md hover:bg-black/5 transition-colors"
+      aria-label="Toggle sidebar"
+    >
+      <!-- Hamburger Icon -->
+      <svg
+        class="w-5 h-5 text-black"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+
+    <!-- Vertical Divider (matches sidebar line) -->
+    <span class="h-6 w-px bg-black/20"></span>
+
+    <!-- Page Title -->
+    <h2 class="text-xl font-semibold text-black">
+      {{ pageTitle }}
+    </h2>
+  </div>
+
+  <!-- Right -->
+  <div class="relative flex items-center gap-4">
+    <!-- Search -->
+    <div class="relative min-w-[360px]">
+      <input
+        type="text"
+        placeholder="Search patients, doctor, or reports...."
+        class="w-full px-12 py-2.5 rounded-lg border border-black/40 text-sm bg-white"
+      />
+      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-black/40"> 🔍 </span>
+    </div>
+
+    <!-- Profile Wrapper -->
+    <div class="relative">
+      <!-- Profile Button -->
+      <button
+        (click)="open = !open"
+        class="flex items-center gap-2 px-3 py-2 border border-black/40 rounded-lg bg-white hover:bg-gray-50 transition-colors"
+      >
+        <!-- Avatar -->
+        <img src="assets/images/users/image-53.png" class="w-8 h-8 rounded-full object-cover" />
+
+        <!-- Name (hidden on small screens / compact) -->
+        <span class="text-sm text-black hidden lg:inline">
+          Dr. John Chen
+          <span class="text-xs text-black/60">(Admin)</span>
+        </span>
+
+        <!-- Arrow Icon (matches collapse UX) -->
+        <svg
+          class="w-4 h-4 text-black/60 transition-transform duration-200"
+          [class.rotate-180]="open"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M5.23 7.21a.75.75 0 011.06.02L10 10.94l3.71-3.71a.75.75 0 111.06 1.06l-4.24 4.25a.75.75 0 01-1.06 0L5.21 8.29a.75.75 0 01.02-1.08z"
+            clip-rule="evenodd"
+          />
+        </svg>
+      </button>
+
+      <!-- Dropdown -->
+      <div
+        *ngIf="open"
+        class="absolute right-0 top-full mt-2 w-44 bg-white border border-black/10 rounded-lg shadow-lg z-50 overflow-hidden"
+      >
+        <!-- Profile -->
+        <button
+          class="w-full flex items-center gap-2 px-4 py-2 text-sm text-black hover:bg-gray-100 transition-colors"
+        >
+          <svg class="w-4 h-4 text-black/60" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 10a4 4 0 100-8 4 4 0 000 8zm-7 8a7 7 0 1114 0H3z" />
+          </svg>
+          Profile
+        </button>
+
+        <!-- Divider -->
+        <div class="h-px bg-black/10"></div>
+
+        <!-- Logout -->
+        <button
+          class="w-full flex items-center gap-2 px-4 py-2 text-sm text-red-600 hover:bg-red-50 transition-colors"
+        >
+          <svg class="w-4 h-4 text-red-600" fill="currentColor" viewBox="0 0 20 20">
+            <path
+              fill-rule="evenodd"
+              d="M3 4.5A1.5 1.5 0 014.5 3h6a.75.75 0 010 1.5h-6a.5.5 0 00-.5.5v10a.5.5 0 00.5.5h6a.75.75 0 010 1.5h-6A1.5 1.5 0 013 15.5v-11zM14.72 9.47a.75.75 0 010 1.06l-2.25 2.25a.75.75 0 11-1.06-1.06l.97-.97H7.75a.75.75 0 010-1.5h4.63l-.97-.97a.75.75 0 111.06-1.06l2.25 2.25z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Logout
+        </button>
+      </div>
+    </div>
+  </div>
+</header>

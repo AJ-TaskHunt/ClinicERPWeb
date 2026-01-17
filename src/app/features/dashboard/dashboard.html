@@ -1,0 +1,138 @@
+<div class="space-y-6">
+
+  <!-- Stats Cards -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+    <!-- Total Patients -->
+    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
+      <div
+        class="w-14 h-14 rounded-full border-2 border-[#F38284] bg-white
+               shadow-[0_4px_4px_0_#F26674]
+               flex items-center justify-center mb-4"
+      >
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/ac3aecc0a5115e8be5bae7c66282136140876fa8?width=90"
+          class="w-9 h-9"
+        />
+      </div>
+
+      <div class="text-2xl font-semibold text-black mb-1">12,450</div>
+      <div class="text-sm text-status-error">Total Patients</div>
+    </div>
+
+    <!-- Today Appointments -->
+    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
+      <div
+        class="w-14 h-14 rounded-full border-2 border-[#478CF7] bg-white
+               shadow-[0_4px_4px_0_#1F8BCC]
+               flex items-center justify-center mb-4"
+      >
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/39dc76707bc52880aa0b17a128e72dc270456f35?width=90"
+          class="w-9 h-9"
+        />
+      </div>
+
+      <div class="text-2xl font-semibold text-black mb-1">92</div>
+      <div class="text-sm text-primary-dark">Today Appointments</div>
+    </div>
+
+    <!-- Today Revenue -->
+    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
+      <div
+        class="w-14 h-14 rounded-full border-2 border-[#DEB945] bg-white
+               shadow-[0_4px_4px_0_#DEB945]
+               flex items-center justify-center mb-4"
+      >
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/c56e957157b24edad012818ef1078ba483208262?width=84"
+          class="w-8 h-8"
+        />
+      </div>
+
+      <div class="text-2xl font-semibold text-black mb-1">$ 18,450</div>
+      <div class="text-sm text-status-warning">Today Revenue</div>
+    </div>
+
+    <!-- Pending Payments -->
+    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
+      <div
+        class="w-14 h-14 rounded-full border-2 border-[#FFE177] bg-white
+               shadow-[0_4px_4px_0_#FFE177]
+               flex items-center justify-center mb-4"
+      >
+        <img
+          src="https://api.builder.io/api/v1/image/assets/TEMP/24edd21feb11712562e9cf651ef1ef8e8c48ba0d?width=90"
+          class="w-9 h-9"
+        />
+      </div>
+
+      <div class="text-2xl font-semibold text-black mb-1">$ 4,200</div>
+      <div class="text-sm text-[#46C9BA]">
+        Pending Payments ( 6 invoices )
+      </div>
+    </div>
+  </div>
+
+  <!-- Chart & Pie Chart -->
+  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+    <div class="lg:col-span-2 bg-white rounded-xl border border-black/50 p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-base font-semibold text-black">
+          Patient & Revenue Overview
+        </h3>
+        <div class="flex gap-2">
+          <button class="px-3 py-1 text-xs border border-black/20 rounded">
+            Weekly
+          </button>
+          <button class="px-3 py-1 text-xs border border-black/20 rounded">
+            Monthly
+          </button>
+        </div>
+      </div>
+
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/7ac861565d632d1d8664b52c3d5b744693dee113?width=1190"
+        class="w-full h-48 object-contain"
+      />
+    </div>
+
+    <div class="bg-white rounded-xl border border-black/50 p-6">
+      <h3 class="text-base font-semibold text-black mb-4">
+        Appointment Distribution
+      </h3>
+      <img
+        src="https://api.builder.io/api/v1/image/assets/TEMP/76fcbb5182ca103475a7a6d0ff795ecda72bd9c1?width=762"
+        class="w-full"
+      />
+    </div>
+  </div>
+
+  <!-- Tables -->
+  <div class="bg-white rounded-xl border border-black/50 p-6">
+    <h3 class="text-lg font-semibold text-black mb-6">
+      Today Appointments
+    </h3>
+
+    <div class="space-y-3 min-w-[600px]">
+      <div
+        *ngFor="let appointment of appointments"
+        class="grid grid-cols-4 gap-4 items-center
+               py-3 px-4 rounded-lg border border-black/10 bg-bg-card"
+      >
+        <div class="text-sm text-black">{{ appointment.patient }}</div>
+        <div class="text-sm text-black">{{ appointment.doctor }}</div>
+        <div class="text-sm text-black">{{ appointment.time }}</div>
+        <div class="text-right">
+          <span
+            [class]="getStatusClass(appointment.status)"
+            class="inline-block px-4 py-1 rounded-lg text-sm"
+          >
+            {{ appointment.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

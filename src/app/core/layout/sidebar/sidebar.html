@@ -1,0 +1,52 @@
+<aside
+  class="relative bg-bg-card shadow-card hidden md:flex flex-col transition-all duration-300"
+  [class.w-48]="!collapsed"
+  [class.w-20]="collapsed"
+>
+
+  <!-- Logo -->
+  <div class="flex items-center gap-3 p-6 border-b border-black/5">
+    <img
+      src="https://api.builder.io/api/v1/image/assets/TEMP/538d3ae5ad3a2fe94956aa210854e0c3befffcf1?width=220"
+      class="w-8 h-8 shrink-0"
+    />
+
+    <span
+      class="text-xl font-bold text-primary-dark transition-all overflow-hidden"
+      [class.opacity-0]="collapsed"
+      [class.w-0]="collapsed"
+    >
+      <span class="text-blue-600/100 dark:text-sky-400/100">Clinic ERP</span> 
+    </span>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="flex-1 py-4 space-y-1">
+    <a
+      *ngFor="let item of navItems"
+      [routerLink]="item.route"
+      routerLinkActive="bg-blue-50 border-l-4 border-primary-dark"
+      class="relative group flex items-center gap-3 px-5 py-3 text-sm hover:bg-blue-50 transition-colors"
+    >
+      <!-- ICON (always visible) -->
+      <img [src]="item.icon" class="w-5 h-5 shrink-0" />
+
+      <!-- LABEL (hidden when collapsed) -->
+      <span
+        class="transition-all overflow-hidden whitespace-nowrap"
+        [class.opacity-0]="collapsed"
+        [class.w-0]="collapsed"
+      >
+        {{ item.label }}
+      </span>
+
+      <!-- TOOLTIP (only when collapsed) -->
+      <span
+        *ngIf="collapsed"
+        class="absolute left-full ml-3 px-3 py-1.5 text-xs text-white bg-black rounded-md opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50"
+      >
+        {{ item.label }}
+      </span>
+    </a>
+  </nav>
+</aside>
