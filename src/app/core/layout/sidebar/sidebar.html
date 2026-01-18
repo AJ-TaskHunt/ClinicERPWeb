@@ -1,9 +1,8 @@
 <aside
-  class="relative bg-bg-card shadow-card hidden md:flex flex-col transition-all duration-300"
+  class="relative bg-bg-card shadow-card hidden md:flex flex-col transition-all duration-300 h-screen"
   [class.w-48]="!collapsed"
   [class.w-20]="collapsed"
 >
-
   <!-- Logo -->
   <div class="flex items-center gap-3 p-6 border-b border-black/5">
     <img
@@ -16,22 +15,20 @@
       [class.opacity-0]="collapsed"
       [class.w-0]="collapsed"
     >
-      <span class="text-blue-600/100 dark:text-sky-400/100">Clinic ERP</span> 
+      <span class="text-blue-600/100 dark:text-sky-400/100">Clinic ERP</span>
     </span>
   </div>
 
   <!-- Navigation -->
-  <nav class="flex-1 py-4 space-y-1">
+  <!-- <nav class="flex-1 py-4 space-y-1">
     <a
       *ngFor="let item of navItems"
       [routerLink]="item.route"
       routerLinkActive="bg-blue-50 border-l-4 border-primary-dark"
       class="relative group flex items-center gap-3 px-5 py-3 text-sm hover:bg-blue-50 transition-colors"
     >
-      <!-- ICON (always visible) -->
       <img [src]="item.icon" class="w-5 h-5 shrink-0" />
 
-      <!-- LABEL (hidden when collapsed) -->
       <span
         class="transition-all overflow-hidden whitespace-nowrap"
         [class.opacity-0]="collapsed"
@@ -40,7 +37,6 @@
         {{ item.label }}
       </span>
 
-      <!-- TOOLTIP (only when collapsed) -->
       <span
         *ngIf="collapsed"
         class="absolute left-full ml-3 px-3 py-1.5 text-xs text-white bg-black rounded-md opacity-0 group-hover:opacity-100 pointer-events-none whitespace-nowrap z-50"
@@ -48,5 +44,94 @@
         {{ item.label }}
       </span>
     </a>
+  </nav> -->
+  <!-- <nav class="flex-1 py-4 space-y-1">
+    <ng-container *ngFor="let item of navItems">
+      <div
+        (click)="toggleMenu(item)"
+        class="relative group flex items-center justify-between gap-3 px-5 py-3 text-sm cursor-pointer hover:bg-blue-50 transition-colors rounded-md"
+      >
+        <div class="flex items-center gap-3">
+          <img [src]="item.icon" class="w-5 h-5 shrink-0" />
+
+          <span
+            class="transition-all overflow-hidden whitespace-nowrap"
+            [class.opacity-0]="collapsed"
+            [class.w-0]="collapsed"
+          >
+            {{ item.label }}
+          </span>
+        </div>
+
+        <span
+          *ngIf="item.children && !collapsed"
+          class="text-lg transition-transform duration-200"
+          [class.rotate-90]="item.expanded"
+        >
+          ▸
+        </span>
+      </div>
+
+      <div *ngIf="item.children && item.expanded && !collapsed" class="ml-12 space-y-1">
+        <a
+          *ngFor="let child of item.children"
+          [routerLink]="child.route"
+          routerLinkActive="text-blue-600 font-medium"
+          class="block px-4 py-2 text-sm rounded-md hover:bg-blue-50 transition"
+        >
+          {{ child.label }}
+        </a>
+      </div>
+    </ng-container>
+  </nav> -->
+
+  <nav class="flex-1 py-3 space-y-1 overflow-y-auto">
+    <ng-container *ngFor="let item of navItems">
+      <!-- PARENT -->
+      <div
+        (click)="toggleMenu(item)"
+        class="group flex items-center justify-between px-5 py-3 rounded-lg cursor-pointer text-[15px] font-medium text-gray-800 hover:bg-[#F3F6FD] transition-colors"
+      >
+        <div class="flex items-center gap-3">
+          <a routerLink="{{ item.route }}"><img [src]="item.icon" class="w-5 h-5" /></a>
+
+          <span
+            class="transition-all whitespace-nowrap"
+            [class.opacity-0]="collapsed"
+            [class.w-0]="collapsed"
+          >
+            <a routerLink="{{ item.route }}">{{ item.label }}</a>
+          </span>
+        </div>
+
+        <!-- Toggle Icon -->
+        <span
+          *ngIf="item.children && !collapsed"
+          class="text-gray-500 text-lg transition-transform duration-300"
+          [class.rotate-90]="item.expanded"
+        >
+          ▸
+        </span>
+      </div>
+
+      <!-- SUB MENU -->
+      <div
+        *ngIf="item.children && !collapsed"
+        class="submenu"
+        [class.open]="item.expanded"
+        [class.closed]="!item.expanded"
+      >
+        <div class="pl-11 pr-4 py-1 space-y-1">
+          <a
+            *ngFor="let child of item.children"
+            [routerLink]="child.route"
+            routerLinkActive="bg-[#EEF3FF] text-blue-600 font-medium"
+            class="block px-4 py-2 rounded-md text-[14px] text-gray-700 hover:bg-[#EEF3FF] transition-colors"
+          >
+            {{ child.label }}
+          </a>
+        </div>
+      </div>
+    </ng-container>
   </nav>
 </aside>

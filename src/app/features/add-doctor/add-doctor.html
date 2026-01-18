@@ -1,0 +1,154 @@
+<div class="bg-[#c3cee8] min-h-screen p-4 sm:p-6">
+  <div class="max-w-7xl mx-auto space-y-6">
+    <!-- ================= PAGE HEADER ================= -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm">
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-900">Add Doctor</h2>
+      <p class="text-sm text-gray-500 mt-1">
+        Fill all required information to register a new doctor
+      </p>
+    </div>
+
+    <!-- ================= STEPPER ================= -->
+    <!-- <div class="bg-white rounded-2xl p-4 shadow-sm">
+      <div class="flex items-center justify-between text-sm font-medium">
+        <div class="flex items-center gap-2 text-blue-600">
+          <span
+            class="w-6 h-6 rounded-full bg-blue-600 text-white flex items-center justify-center text-xs"
+            >1</span
+          >
+          Personal
+        </div>
+
+        <div class="flex-1 h-px bg-gray-200 mx-2"></div>
+
+        <div class="flex items-center gap-2 text-gray-400">
+          <span class="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs"
+            >2</span
+          >
+          Contact
+        </div>
+
+        <div class="flex-1 h-px bg-gray-200 mx-2"></div>
+
+        <div class="flex items-center gap-2 text-gray-400">
+          <span class="w-6 h-6 rounded-full bg-gray-200 flex items-center justify-center text-xs"
+            >3</span
+          >
+          Account
+        </div>
+      </div>
+    </div> -->
+
+    <!-- TWO COLUMN LAYOUT -->
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 items-start">
+      <!-- ================= LEFT : FORM ================= -->
+      <div class="lg:col-span-2 bg-white rounded-2xl p-5 shadow-sm space-y-6">
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold text-blue-600">👤 Personal Information</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div>
+              <input class="ui-input" placeholder="First Name *" />
+              <p class="text-xs text-red-500 mt-1 hidden">First name is required</p>
+            </div>
+
+            <input class="ui-input" placeholder="Middle Name" />
+            <input class="ui-input" placeholder="Last Name *" />
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <input class="ui-input" placeholder="Designation *" />
+
+            <input type="date" class="ui-input" />
+
+            <select class="ui-input">
+              <option value="">Gender *</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <hr class="border-gray-200" />
+
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold text-blue-600">📞 Contact Information</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <input class="ui-input" placeholder="Email *" />
+            <input class="ui-input" placeholder="Mobile *" />
+            <input class="ui-input" placeholder="Alternative Contact" />
+          </div>
+
+          <textarea rows="2" class="ui-input resize-none" placeholder="Address"></textarea>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <input class="ui-input" placeholder="City" />
+            <input class="ui-input" placeholder="State" />
+            <input class="ui-input" placeholder="Postal Code" />
+          </div>
+        </div>
+
+        <hr class="border-gray-200" />
+
+        <div class="space-y-4">
+          <h3 class="text-sm font-semibold text-blue-600">🧾 Account Information</h3>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <select class="ui-input">
+              <option value="">Department *</option>
+              <option>Cardiology</option>
+              <option>Orthopedics</option>
+              <option>Neurology</option>
+            </select>
+
+            <input type="date" class="ui-input" />
+            <input class="ui-input" placeholder="Salary *" />
+          </div>
+
+          <div class="flex items-center gap-3">
+            <span class="text-xs text-gray-500">Login Access</span>
+            <select
+              class="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-700 border"
+            >
+              <option>PENDING</option>
+              <option>ACTIVE</option>
+              <option>DISABLED</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- ================= RIGHT : STICKY SUMMARY ================= -->
+      <div class="bg-white rounded-2xl p-5 shadow-sm space-y-4 sticky top-6">
+        <h3 class="text-sm font-semibold text-gray-900">Doctor Summary</h3>
+
+        <div class="text-sm space-y-2">
+          <div>
+            <p class="text-gray-500">Name</p>
+            <p class="font-medium">—</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">Department</p>
+            <p class="font-medium">—</p>
+          </div>
+
+          <div>
+            <p class="text-gray-500">Login Access</p>
+            <span class="inline-block px-2 py-1 rounded-full text-xs bg-yellow-100 text-yellow-700">
+              PENDING
+            </span>
+          </div>
+        </div>
+
+        <button
+          class="w-full mt-4 px-4 py-2 rounded-lg text-sm font-medium bg-blue-600 text-white hover:bg-blue-700"
+        >
+          Save Doctor
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,138 +1,497 @@
-<div class="space-y-6">
+<div class="space-y-8 bg-[#c3cee8] p-6">
+  <!-- ================= LICENSE & SUBSCRIPTION ================= -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm space-y-5">
+    <!-- Header -->
+    <div class="flex justify-between items-center">
+      <h3 class="text-lg font-semibold text-gray-900">License & Subscription</h3>
 
-  <!-- Stats Cards -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-
-    <!-- Total Patients -->
-    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
-      <div
-        class="w-14 h-14 rounded-full border-2 border-[#F38284] bg-white
-               shadow-[0_4px_4px_0_#F26674]
-               flex items-center justify-center mb-4"
+      <span
+        class="px-3 py-1 rounded-full text-sm font-medium"
+        [ngClass]="
+          license.status === 'ACTIVE' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'
+        "
       >
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/ac3aecc0a5115e8be5bae7c66282136140876fa8?width=90"
-          class="w-9 h-9"
-        />
-      </div>
-
-      <div class="text-2xl font-semibold text-black mb-1">12,450</div>
-      <div class="text-sm text-status-error">Total Patients</div>
+        {{ license.status }}
+      </span>
     </div>
 
-    <!-- Today Appointments -->
-    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
-      <div
-        class="w-14 h-14 rounded-full border-2 border-[#478CF7] bg-white
-               shadow-[0_4px_4px_0_#1F8BCC]
-               flex items-center justify-center mb-4"
-      >
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/39dc76707bc52880aa0b17a128e72dc270456f35?width=90"
-          class="w-9 h-9"
-        />
-      </div>
-
-      <div class="text-2xl font-semibold text-black mb-1">92</div>
-      <div class="text-sm text-primary-dark">Today Appointments</div>
-    </div>
-
-    <!-- Today Revenue -->
-    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
-      <div
-        class="w-14 h-14 rounded-full border-2 border-[#DEB945] bg-white
-               shadow-[0_4px_4px_0_#DEB945]
-               flex items-center justify-center mb-4"
-      >
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/c56e957157b24edad012818ef1078ba483208262?width=84"
-          class="w-8 h-8"
-        />
-      </div>
-
-      <div class="text-2xl font-semibold text-black mb-1">$ 18,450</div>
-      <div class="text-sm text-status-warning">Today Revenue</div>
-    </div>
-
-    <!-- Pending Payments -->
-    <div class="bg-white rounded-xl border border-black/50 p-6 flex flex-col items-start">
-      <div
-        class="w-14 h-14 rounded-full border-2 border-[#FFE177] bg-white
-               shadow-[0_4px_4px_0_#FFE177]
-               flex items-center justify-center mb-4"
-      >
-        <img
-          src="https://api.builder.io/api/v1/image/assets/TEMP/24edd21feb11712562e9cf651ef1ef8e8c48ba0d?width=90"
-          class="w-9 h-9"
-        />
-      </div>
-
-      <div class="text-2xl font-semibold text-black mb-1">$ 4,200</div>
-      <div class="text-sm text-[#46C9BA]">
-        Pending Payments ( 6 invoices )
+    <!-- Warning Banner -->
+    <div
+      *ngIf="isExpiringSoon()"
+      class="flex items-center gap-3 p-4 rounded-xl bg-orange-50 border border-orange-200"
+    >
+      <span class="text-orange-600 text-lg">⚠</span>
+      <div class="text-sm text-orange-700">
+        Your license will expire in
+        <strong>{{ daysRemaining() }} days</strong>. Please renew to avoid service interruption.
       </div>
     </div>
-  </div>
 
-  <!-- Chart & Pie Chart -->
-  <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-    <div class="lg:col-span-2 bg-white rounded-xl border border-black/50 p-6">
-      <div class="flex items-center justify-between mb-4">
-        <h3 class="text-base font-semibold text-black">
-          Patient & Revenue Overview
-        </h3>
-        <div class="flex gap-2">
-          <button class="px-3 py-1 text-xs border border-black/20 rounded">
-            Weekly
-          </button>
-          <button class="px-3 py-1 text-xs border border-black/20 rounded">
-            Monthly
-          </button>
+    <!-- Info Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
+      <!-- License Key -->
+      <div class="sm:col-span-2">
+        <div class="text-sm text-gray-500 mb-1">License Key</div>
+        <div class="font-mono text-sm font-medium text-gray-900 break-all">
+          {{ license.licenseKey }}
         </div>
       </div>
 
-      <img
-        src="https://api.builder.io/api/v1/image/assets/TEMP/7ac861565d632d1d8664b52c3d5b744693dee113?width=1190"
-        class="w-full h-48 object-contain"
-      />
+      <!-- Start Date -->
+      <div>
+        <div class="text-sm text-gray-500 mb-1">Start Date</div>
+        <div class="text-sm font-medium text-gray-900">
+          {{ license.subscriptionStart | date: 'dd MMM yyyy' }}
+        </div>
+      </div>
+
+      <!-- End Date -->
+      <div>
+        <div class="text-sm text-gray-500 mb-1">Expiry Date</div>
+        <div
+          class="text-sm font-medium"
+          [ngClass]="isExpiringSoon() ? 'text-orange-600' : 'text-gray-900'"
+        >
+          {{ license.subscriptionEnd | date: 'dd MMM yyyy' }}
+        </div>
+      </div>
     </div>
 
-    <div class="bg-white rounded-xl border border-black/50 p-6">
-      <h3 class="text-base font-semibold text-black mb-4">
-        Appointment Distribution
-      </h3>
-      <img
-        src="https://api.builder.io/api/v1/image/assets/TEMP/76fcbb5182ca103475a7a6d0ff795ecda72bd9c1?width=762"
-        class="w-full"
-      />
+    <!-- Footer -->
+    <div class="flex justify-between items-center pt-2">
+      <div class="text-sm text-gray-500">
+        Days Remaining:
+        <span
+          class="font-semibold"
+          [ngClass]="daysRemaining() <= 30 ? 'text-orange-600' : 'text-gray-900'"
+        >
+          {{ daysRemaining() }}
+        </span>
+      </div>
+
+      <button
+        class="px-5 py-2 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition"
+      >
+        Renew License
+      </button>
     </div>
   </div>
 
-  <!-- Tables -->
-  <div class="bg-white rounded-xl border border-black/50 p-6">
-    <h3 class="text-lg font-semibold text-black mb-6">
-      Today Appointments
-    </h3>
+  <!-- ================= STATS CARDS ================= -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- new Appointments card -->
+    <div class="relative bg-white rounded-2xl p-6 shadow-sm overflow-hidden group">
+      <div class="absolute bottom-0 left-0 w-full h-20 bg-purple-100 rounded-t-[60%]"></div>
 
-    <div class="space-y-3 min-w-[600px]">
+      <div class="relative z-10">
+        <!-- <div class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center mb-4">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/ac3aecc0a5115e8be5bae7c66282136140876fa8?width=80"
+            class="w-6 h-6 invert"
+          />
+        </div> -->
+
+        <!-- perfect -->
+        <div
+          class="w-12 h-12 rounded-xl bg-purple-500 flex items-center justify-center mb-4 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:shadow-lg"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-6 h-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+            />
+          </svg>
+        </div>
+
+        <!-- angular Heroicons -->
+        <!-- <div class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center mb-4">
+          <lucide-icon name="user-plus" class="w-6 h-6 text-white"></lucide-icon>
+        </div> -->
+
+        <div class="text-sm text-gray-500 mb-1">Appointments</div>
+        <div class="text-2xl font-bold text-gray-900">650</div>
+      </div>
+    </div>
+
+    <!-- Operations card -->
+    <div class="relative bg-white rounded-2xl p-6 shadow-sm overflow-hidden group">
+      <div class="absolute bottom-0 left-0 w-full h-20 bg-orange-100 rounded-t-[60%]"></div>
+
+      <div class="relative z-10">
+        <div
+          class="w-12 h-12 rounded-xl bg-orange-500 flex items-center justify-center mb-4 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:shadow-lg"
+        >
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/39dc76707bc52880aa0b17a128e72dc270456f35?width=80"
+            class="w-6 h-6 invert"
+          />
+        </div>
+
+        <div class="text-sm text-gray-500 mb-1">Operations</div>
+        <div class="text-2xl font-bold text-gray-900">54</div>
+      </div>
+    </div>
+
+    <!-- New Patients card -->
+    <div class="relative bg-white rounded-2xl p-6 shadow-sm overflow-hidden group">
+      <div class="absolute bottom-0 left-0 w-full h-20 bg-green-100 rounded-t-[60%]"></div>
+
+      <div class="relative z-10">
+        <div
+          class="w-12 h-12 rounded-xl bg-green-500 flex items-center justify-center mb-4 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:shadow-lg"
+        >
+          <svg
+            class="w-6 h-6 text-white transition-opacity duration-200 group-hover:opacity-90"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle cx="12" cy="8" r="4" />
+            <path d="M6 20v-2a6 6 0 0112 0v2" />
+          </svg>
+        </div>
+
+        <div class="text-sm text-gray-500 mb-1">New Patients</div>
+        <div class="text-2xl font-bold text-gray-900">129</div>
+      </div>
+    </div>
+
+    <!-- Revenue card -->
+    <div class="relative bg-white rounded-2xl p-6 shadow-sm overflow-hidden group">
+      <div class="absolute bottom-0 left-0 w-full h-20 bg-blue-100 rounded-t-[60%]"></div>
+
+      <div class="relative z-10">
+        <!-- <div class="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center mb-4">
+          <img
+            src="https://api.builder.io/api/v1/image/assets/TEMP/24edd21feb11712562e9cf651ef1ef8e8c48ba0d?width=80"
+            class="w-6 h-6 invert"
+          />
+        </div> -->
+        <div
+          class="w-12 h-12 rounded-xl bg-blue-500 flex items-center justify-center mb-4 transition-all duration-200 ease-out group-hover:-translate-y-0.5 group-hover:scale-105 group-hover:shadow-lg"
+        >
+          <svg
+            class="w-6 h-6 text-white transition-opacity duration-200 group-hover:opacity-90"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect x="2" y="6" width="20" height="12" rx="2" />
+            <line x1="12" y1="9" x2="12" y2="15" />
+            <line x1="9" y1="12" x2="15" y2="12" />
+          </svg>
+        </div>
+
+        <div class="text-sm text-gray-500 mb-1">Earning</div>
+        <div class="text-2xl font-bold text-gray-900">$20,125</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= CHART SECTION ================= -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 items-stretch">
+    <!-- Patient Chart -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col">
+      <h3 class="font-semibold text-gray-900 mb-2">Patient Chart</h3>
+
+      <div class="flex justify-center mt-2">
+        <apx-chart
+          [series]="patientChart.series"
+          [chart]="patientChart.chart"
+          [labels]="patientChart.labels"
+          [legend]="patientChart.legend"
+          [plotOptions]="patientChart.plotOptions"
+          [colors]="patientChart.colors"
+        >
+        </apx-chart>
+      </div>
+    </div>
+
+    <!-- <div class="bg-white rounded-2xl p-6 shadow-sm">
+      <h3 class="font-semibold mb-4">Patient Chart</h3>
+
+      <apx-chart
+        [series]="patientChart.series"
+        [chart]="patientChart.chart"
+        [labels]="patientChart.labels"
+        [legend]="patientChart.legend"
+        [responsive]="patientChart.responsive"
+      >
+      </apx-chart>
+    </div> -->
+
+    <!-- Appointments (Replaces Revenue) -->
+    <!-- <div class="bg-white rounded-2xl p-6 shadow-sm h-full flex flex-col">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-semibold text-gray-900">Appointments</h3>
+        <span class="text-sm text-gray-500">January 2026</span>
+      </div>
+
+      <div class="flex items-center justify-between mb-4 text-center">
+        <button class="text-gray-400 hover:text-gray-700">‹</button>
+
+        <div class="flex gap-4 text-sm">
+          <div class="text-gray-400">Fri<br /><span class="font-semibold">23</span></div>
+          <div class="text-gray-400">Sat<br /><span class="font-semibold">24</span></div>
+          <div class="text-gray-400">Sun<br /><span class="font-semibold">25</span></div>
+
+          <div class="bg-blue-50 rounded-xl px-3 py-1">
+            <div class="text-blue-600 text-xs">Mon</div>
+            <div class="text-blue-700 font-semibold">26</div>
+          </div>
+
+          <div class="text-gray-400">Tue<br /><span class="font-semibold">27</span></div>
+          <div class="text-gray-400">Wed<br /><span class="font-semibold">28</span></div>
+          <div class="text-gray-400">Thu<br /><span class="font-semibold">29</span></div>
+        </div>
+
+        <button class="text-gray-400 hover:text-gray-700">›</button>
+      </div>
+
+      <div class="text-sm text-orange-500 font-medium mb-4">
+        {{ todayAppointments.length }} appointments today
+      </div>
+
+      <div class="space-y-3 overflow-y-auto pr-2">
+        <div
+          *ngFor="let appt of todayAppointments"
+          class="border border-gray-200 rounded-xl p-4 flex justify-between items-start"
+        >
+          <div class="flex gap-3">
+            <span class="w-1.5 rounded-full" [ngClass]="getTypeColor(appt.type)"></span>
+
+            <div>
+              <div class="font-medium text-gray-900">{{ appt.patient }}</div>
+              <div class="text-sm text-blue-600">{{ appt.type }}</div>
+              <div class="text-xs text-gray-500 mt-1">👨‍⚕️ {{ appt.doctor }}</div>
+            </div>
+          </div>
+
+          <div class="text-sm font-medium text-gray-600">{{ appt.time }}</div>
+        </div>
+      </div>
+    </div> -->
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm h-full">
+      <!-- Title -->
+      <div class="flex justify-between items-center mb-3">
+        <h3 class="font-semibold text-gray-900">Appointments</h3>
+        <span class="text-sm text-gray-500">January 2026</span>
+      </div>
+
+      <!-- 🔥 CALENDAR HEADER (ADD HERE) -->
+      <div class="flex items-center justify-between mb-3 text-sm text-gray-500">
+        <button (click)="changeDay(-1)" class="px-2">‹</button>
+
+        <div class="flex gap-2">
+          <div
+            *ngFor="let d of weekDays"
+            class="flex flex-col items-center px-3 py-2 rounded-xl cursor-pointer"
+            [class.bg-blue-50]="isActive(d)"
+            [class.text-blue-600]="isActive(d)"
+          >
+            <span class="text-xs">{{ d | date: 'EEE' }}</span>
+            <span class="font-medium">{{ d | date: 'dd' }}</span>
+          </div>
+        </div>
+
+        <button (click)="changeDay(1)" class="px-2">›</button>
+      </div>
+
+      <p class="text-sm text-orange-500 mb-4">5 appointments today</p>
+
+      <div class="space-y-3">
+        <div
+          *ngFor="let a of appointments"
+          class="flex justify-between items-center p-4 rounded-xl border border-gray-100 hover:bg-gray-50"
+        >
+          <div class="flex gap-3">
+            <span
+              class="w-1.5 rounded-full"
+              [class.bg-yellow-400]="a.type === 'Routine'"
+              [class.bg-green-400]="a.type === 'Follow-Up'"
+              [class.bg-blue-400]="a.type === 'Consultation'"
+            >
+            </span>
+
+            <div>
+              <p class="font-medium text-gray-900 leading-tight">
+                {{ a.patient }}
+              </p>
+              <p class="text-sm text-blue-600">{{ a.title }}</p>
+              <p class="text-xs text-gray-400 flex items-center gap-1">👨‍⚕️ {{ a.doctor }}</p>
+            </div>
+          </div>
+
+          <p class="text-sm font-medium text-gray-700">
+            {{ a.time }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= HOSPITAL SURVEY CHART ================= -->
+  <div class="mt-6">
+    <div class="bg-white rounded-2xl p-6 shadow-sm">
+      <div class="flex justify-between mb-4">
+        <h3 class="font-semibold">Hospital Survey</h3>
+        <!-- <button class="text-sm px-3 py-1 border rounded-lg">Monthly</button> -->
+        <select
+          class="text-sm px-3 py-1.5 border border-gray-300 rounded-lg bg-white text-gray-700 focus:outline-none focus:ring-1 focus:ring-blue-500"
+          [(ngModel)]="surveyRange"
+          (change)="onSurveyRangeChange()"
+        >
+          <option value="weekly">Weekly</option>
+          <option value="monthly">Monthly</option>
+          <option value="yearly">Yearly</option>
+        </select>
+      </div>
+
+      <apx-chart
+        [series]="hospitalSurveyChart.series"
+        [chart]="hospitalSurveyChart.chart"
+        [xaxis]="hospitalSurveyChart.xaxis"
+        [stroke]="hospitalSurveyChart.stroke"
+        [fill]="hospitalSurveyChart.fill"
+        [tooltip]="hospitalSurveyChart.tooltip"
+        [dataLabels]="hospitalSurveyChart.dataLabels"
+      >
+      </apx-chart>
+    </div>
+  </div>
+
+  <!-- ================= CALENDAR + TIMELINE ================= -->
+  <!-- <div class="grid grid-cols-1 lg:grid-cols-3 gap-6"> -->
+
+  <!-- ===== MINI CALENDAR ===== -->
+  <!-- <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <div class="flex justify-between items-center mb-4">
+      <h3 class="font-semibold text-gray-900">Schedule</h3>
+      <span class="text-sm text-gray-500">{{ today | date:'MMM yyyy' }}</span>
+    </div>
+
+    <!-- Week Header -->
+  <!-- <div class="grid grid-cols-7 text-center text-xs text-gray-500 mb-2">
+      <div *ngFor="let d of weekDays">{{ d }}</div>
+    </div> -->
+
+  <!-- Dates -->
+  <!-- <div class="grid grid-cols-7 gap-2 text-center">
+      <div
+        *ngFor="let day of weekDates"
+        class="h-9 flex items-center justify-center rounded-lg text-sm cursor-pointer"
+        [ngClass]="{
+          'bg-blue-600 text-white font-medium': day.isToday,
+          'text-gray-700 hover:bg-gray-100': !day.isToday
+        }">
+        {{ day.date }}
+      </div>
+    </div>
+  </div> -->
+
+  <!-- ===== APPOINTMENT TIMELINE ===== -->
+  <!-- <div class="lg:col-span-2 bg-white rounded-2xl p-6 shadow-sm">
+    <div class="flex justify-between items-center mb-5">
+      <h3 class="font-semibold text-gray-900">Today’s Appointments</h3>
+      <a class="text-sm text-blue-600 cursor-pointer">View All</a>
+    </div>
+
+    <div class="relative space-y-6">
+      <div class="absolute left-3 top-0 bottom-0 w-px bg-gray-200"></div>
+
+      <div
+        *ngFor="let appt of todayAppointments"
+        class="relative pl-10 flex justify-between items-start">
+
+        <span
+          class="absolute left-1.5 top-1.5 w-3 h-3 rounded-full"
+          [ngClass]="getTimelineDot(appt.status)">
+        </span>
+
+        <div>
+          <div class="font-medium text-gray-900">
+            {{ appt.patient }}
+          </div>
+          <div class="text-sm text-gray-500">
+            {{ appt.doctor }}
+          </div>
+          <div class="text-xs text-gray-400 mt-1">
+            {{ appt.time }}
+          </div>
+        </div>
+
+        <span
+          class="px-3 py-1 rounded-full text-xs font-medium"
+          [ngClass]="getAppointmentStatusClass(appt.status)">
+          {{ appt.status }}
+        </span>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- </div> -->
+
+  <!-- ================= APPOINTMENTS ================= -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-semibold text-gray-900">Appointments</h3>
+      <a class="text-sm text-blue-600 cursor-pointer">View All</a>
+    </div>
+
+    <div class="space-y-3">
       <div
         *ngFor="let appointment of appointments"
-        class="grid grid-cols-4 gap-4 items-center
-               py-3 px-4 rounded-lg border border-black/10 bg-bg-card"
+        class="flex justify-between items-center p-4 rounded-xl border border-gray-100 hover:bg-gray-50"
       >
-        <div class="text-sm text-black">{{ appointment.patient }}</div>
-        <div class="text-sm text-black">{{ appointment.doctor }}</div>
-        <div class="text-sm text-black">{{ appointment.time }}</div>
-        <div class="text-right">
-          <span
-            [class]="getStatusClass(appointment.status)"
-            class="inline-block px-4 py-1 rounded-lg text-sm"
-          >
-            {{ appointment.status }}
-          </span>
+        <div>
+          <div class="font-medium text-gray-900">{{ appointment.patient }}</div>
+          <div class="text-sm text-gray-500">{{ appointment.doctor }}</div>
         </div>
+
+        <div class="text-sm text-gray-600">{{ appointment.time }}</div>
+
+        <span [class]="getStatusClass(appointment.status)" class="px-4 py-1 text-sm rounded-full">
+          {{ appointment.status }}
+        </span>
       </div>
     </div>
   </div>
 
+  <!-- ================= DOCTOR STATUS ================= -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <div class="flex justify-between items-center mb-6">
+      <h3 class="font-semibold text-gray-900">Doctor Status</h3>
+      <a class="text-sm text-blue-600 cursor-pointer">View All</a>
+    </div>
+
+    <div class="space-y-3">
+      <div
+        *ngFor="let doctor of doctorStatus"
+        class="flex justify-between items-center p-4 rounded-xl border border-gray-100 hover:bg-gray-50"
+      >
+        <div>
+          <div class="font-medium text-gray-900">{{ doctor.name }}</div>
+          <div class="text-sm text-gray-500">({{ doctor.degree }})</div>
+        </div>
+
+        <span
+          [ngClass]="getDoctorStatusClass(doctor.status)"
+          class="px-4 py-1 text-sm rounded-full"
+        >
+          {{ doctor.status }}
+        </span>
+      </div>
+    </div>
+  </div>
 </div>

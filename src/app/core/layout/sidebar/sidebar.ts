@@ -11,6 +11,24 @@ import { RouterLink } from '@angular/router';
 export class Sidebar {
   @Input() collapsed = false;
 
+  // toggleMenu(item: any) {
+  //   if (item.children) {
+  //     item.expanded = !item.expanded;
+  //   }
+  // }
+
+  toggleMenu(item: any) {
+    if (!item.children) return;
+
+    this.navItems.forEach((i) => {
+      if (i !== item) {
+        i.expanded = false;
+      }
+    });
+
+    item.expanded = !item.expanded;
+  }
+
   navItems = [
     {
       label: 'Home',
@@ -32,9 +50,17 @@ export class Sidebar {
     },
     {
       label: 'Doctor',
-      route: '/doctor',
       icon: 'https://api.builder.io/api/v1/image/assets/TEMP/c657c719fc1341245ffa40f587f70004b7854281?width=70',
       active: false,
+      expanded: false,
+      children: [
+        { label: 'All Doctors', route: '/doctors' },
+        { label: 'Add Doctor', route: '/add-doctor' },
+        { label: 'Edit Doctor', route: '/doctors/edit' },
+        { label: 'Assign Department', route: '/doctors/department' },
+        { label: 'Shift Management', route: '/doctors/shift' },
+        { label: 'Doctor Profile', route: '/doctors/profile' },
+      ],
     },
     {
       label: 'Appointments',

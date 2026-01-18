@@ -12,8 +12,8 @@
    TAILWIND DIRECTIVES
 =============================== */
 
-@tailwind base;
-@tailwind components;
+/* @tailwind base;
+@tailwind components; */
 @tailwind utilities;
 
 /* ===============================
@@ -43,4 +43,39 @@
     max-width: 100%;
     height: auto;
   }
+}
+
+/* Smooth accordion animation */
+.submenu {
+  overflow: hidden;
+  transition:
+    grid-template-rows 250ms ease,
+    opacity 200ms ease;
+  display: grid;
+}
+
+.submenu.closed {
+  grid-template-rows: 0fr;
+  opacity: 0;
+}
+
+.submenu.open {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.submenu > div {
+  overflow: hidden;
+}
+
+.form-input {
+  @apply w-full rounded-md border border-gray-300 px-3 py-2 text-sm
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500;
+}
+
+.ui-input {
+  @apply w-full rounded-md border border-gray-300 bg-white
+         px-3 py-2 text-sm text-gray-700
+         focus:outline-none focus:ring-1 focus:ring-blue-500
+         focus:border-blue-500;
 }
