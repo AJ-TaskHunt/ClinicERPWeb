@@ -1,0 +1,163 @@
+<div class="space-y-6 bg-[#c3cee8] p-6">
+
+  <!-- HEADER -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm flex justify-between items-center">
+    <h3 class="text-lg font-semibold text-gray-900">Donors</h3>
+
+    <button
+      (click)="toggleForm()"
+      class="px-5 py-2 rounded-lg bg-red-600 text-white text-sm font-medium hover:bg-red-700"
+    >
+      {{ showAddForm ? 'Close' : '+ Add Donor' }}
+    </button>
+  </div>
+
+  <!-- ADD DONOR FORM (INLINE CARD) -->
+  <div
+    *ngIf="showAddForm"
+    class="bg-white rounded-2xl p-6 shadow-sm max-w-3xl"
+  >
+    <h4 class="font-semibold text-gray-900 mb-4">Add New Donor</h4>
+
+    <form class="space-y-4">
+
+  <div>
+    <label class="text-sm text-gray-600">Full Name</label>
+    <input
+      class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+             focus:outline-none focus:ring-2 focus:ring-red-200"
+      [(ngModel)]="donorForm.name"
+      name="name"
+    />
+  </div>
+
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label class="text-sm text-gray-600">Blood Group</label>
+      <select
+        class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+               focus:outline-none focus:ring-2 focus:ring-red-200"
+        [(ngModel)]="donorForm.bloodGroup"
+        name="bloodGroup"
+      >
+        <option value="">Select</option>
+        <option>A+</option><option>A-</option>
+        <option>B+</option><option>B-</option>
+        <option>AB+</option><option>AB-</option>
+        <option>O+</option><option>O-</option>
+      </select>
+    </div>
+
+    <div>
+      <label class="text-sm text-gray-600">Gender</label>
+      <select
+        class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+               focus:outline-none focus:ring-2 focus:ring-red-200"
+        [(ngModel)]="donorForm.gender"
+        name="gender"
+      >
+        <option value="">Select</option>
+        <option>Male</option>
+        <option>Female</option>
+      </select>
+    </div>
+  </div>
+
+<div class="grid grid-cols-2 gap-4">
+  <div>
+    <label class="text-sm text-gray-600">Phone</label>
+    <input
+      class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+             focus:outline-none focus:ring-2 focus:ring-red-200"
+      [(ngModel)]="donorForm.phone"
+      name="phone"
+    />
+  </div>
+
+ <!-- ✅ LAST DONATION DATE -->
+<div>
+  <label class="text-sm text-gray-600">Last Donation Date</label>
+  <input
+    type="date"
+    class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+           focus:outline-none focus:ring-2 focus:ring-red-200"
+    [(ngModel)]="donorForm.lastDonation"
+    name="lastDonation"
+  />
+</div>
+
+
+
+    <div>
+      <label class="text-sm text-gray-600">Age</label>
+      <input
+        type="number"
+        class="w-full mt-1 border border-gray-300 rounded-lg px-3 py-2 bg-white
+               focus:outline-none focus:ring-2 focus:ring-red-200"
+        [(ngModel)]="donorForm.age"
+        name="age"
+      />
+    </div>
+    
+  </div>
+<!-- FORM ACTION BUTTONS -->
+<div class="flex justify-end gap-3 pt-6">
+  <button
+    type="button"
+    (click)="toggleForm()"
+    class="px-6 py-2 rounded-lg border border-gray-300 text-gray-700
+           text-sm font-medium hover:bg-gray-100 transition"
+  >
+    Cancel
+  </button>
+
+  <button
+    type="button"
+    (click)="saveDonor()"
+    class="px-6 py-2 rounded-lg bg-red-600 text-white
+           text-sm font-medium hover:bg-red-700 transition"
+  >
+    Add Donor
+  </button>
+</div>
+
+</form>
+
+  </div>
+
+  <!-- DONORS LIST -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <table class="w-full text-sm">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="p-3 text-left">Name</th>
+          <th>Blood Group</th>
+          <th>Phone</th>
+          <th>Last Donation</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr
+          *ngFor="let donor of donors"
+          class="border-b hover:bg-gray-50"
+        >
+          <td class="p-3 font-medium text-gray-900">{{ donor.name }}</td>
+          <td class="font-bold text-red-600">{{ donor.bloodGroup }}</td>
+          <td>{{ donor.phone }}</td>
+          <td>{{ donor.lastDonation }}</td>
+          <td>
+            <span
+              class="px-3 py-1 text-xs rounded-full"
+              [ngClass]="getStatusClass(donor.status)"
+            >
+              {{ donor.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>

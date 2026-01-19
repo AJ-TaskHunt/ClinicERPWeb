@@ -81,6 +81,20 @@ export class Sidebar {
       active: false,
     },
     {
+      label: 'Blood bank',
+      route: '/blood-bank',
+      icon: 'https://api.builder.io/api/v1/image/assets/TEMP/52756159770675ecaadce45a6c62d8673a3e6ca2?width=70',
+      active: false,
+      children: [
+        { label: 'Donors', route: '/donors' },
+        { label: 'Donors/new', route: '/donors/new' },
+        { label: 'Collection', route: '/collection' },
+        { label: 'Inventory', route: '/inventory' },
+        { label: 'Issue', route: '/issue' },
+        { label: 'Requests', route: '/requests' },
+      ],
+    },
+    {
       label: 'Pharmacy',
       route: '/pharmacy',
       icon: 'https://api.builder.io/api/v1/image/assets/TEMP/4f58e5c24c22869be9be1547283f4ba5958526a5?width=70',
@@ -110,5 +124,6 @@ export class Sidebar {
       icon: 'https://api.builder.io/api/v1/image/assets/TEMP/074469da0cae565d6b7ff3e0759548f499545659?width=70',
       active: false,
     },
+
   ];
 }

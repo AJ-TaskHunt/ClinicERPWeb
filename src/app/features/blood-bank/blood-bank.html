@@ -1,0 +1,160 @@
+<div class="space-y-8 bg-[#c3cee8] p-6">
+
+  <!-- ================= BLOOD BANK STATUS ================= -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm space-y-4">
+    <div class="flex justify-between items-center">
+      <h3 class="text-lg font-semibold text-gray-900">Blood Bank Status</h3>
+
+      <span class="px-3 py-1 rounded-full text-sm font-medium bg-green-100 text-green-700">
+        Operational
+      </span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
+      <div>
+        <div class="text-sm text-gray-500">Total Units</div>
+        <div class="text-2xl font-bold text-gray-900">428</div>
+      </div>
+
+      <div>
+        <div class="text-sm text-gray-500">Available Units</div>
+        <div class="text-2xl font-bold text-green-600">362</div>
+      </div>
+
+      <div>
+        <div class="text-sm text-gray-500">Reserved</div>
+        <div class="text-2xl font-bold text-blue-600">41</div>
+      </div>
+
+      <div>
+        <div class="text-sm text-gray-500">Expiring Soon</div>
+        <div class="text-2xl font-bold text-orange-600">25</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= BLOOD GROUP STOCK ================= -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-8 gap-4">
+    <div
+      *ngFor="let bg of bloodGroups"
+      class="relative bg-white rounded-2xl p-4 shadow-sm overflow-hidden group"
+    >
+      <div class="absolute bottom-0 left-0 w-full h-16 bg-red-100 rounded-t-[60%]"></div>
+
+      <div class="relative z-10 text-center">
+        <div
+          class="mx-auto w-12 h-12 rounded-xl bg-red-500 text-white flex items-center justify-center font-bold mb-2 transition group-hover:scale-105"
+        >
+          {{ bg.group }}
+        </div>
+
+        <div class="text-sm text-gray-500">Units</div>
+        <div class="text-xl font-bold text-gray-900">{{ bg.units }}</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= COLLECTION vs ISSUE ================= -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <div class="bg-white rounded-2xl p-6 shadow-sm h-full">
+      <h3 class="font-semibold text-gray-900 mb-3">Blood Collection vs Issue</h3>
+
+      <apx-chart
+        [series]="bloodChart.series"
+        [chart]="bloodChart.chart"
+        [xaxis]="bloodChart.xaxis"
+        [stroke]="bloodChart.stroke"
+        [colors]="bloodChart.colors"
+        [dataLabels]="bloodChart.dataLabels"
+      ></apx-chart>
+    </div>
+
+    <!-- ================= EXPIRY ALERT ================= -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm space-y-4">
+      <h3 class="font-semibold text-gray-900">Expiry Alerts</h3>
+
+      <div
+        *ngFor="let item of expiringStock"
+        class="flex justify-between items-center p-4 rounded-xl border border-orange-100 bg-orange-50"
+      >
+        <div>
+          <p class="font-medium text-gray-900">
+            {{ item.bloodGroup }} - Bag {{ item.bagNo }}
+          </p>
+          <p class="text-sm text-gray-500">
+            Expires on {{ item.expiry | date:'dd MMM yyyy' }}
+          </p>
+        </div>
+
+        <span class="text-sm font-semibold text-orange-600">
+          {{ item.daysLeft }} days
+        </span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ================= REQUESTS + DONORS ================= -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+    <!-- Blood Requests -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-semibold text-gray-900">Recent Blood Requests</h3>
+        <a class="text-sm text-blue-600 cursor-pointer">View All</a>
+      </div>
+
+      <div class="space-y-3">
+        <div
+          *ngFor="let req of bloodRequests"
+          class="flex justify-between items-center p-4 rounded-xl border border-gray-100 hover:bg-gray-50"
+        >
+          <div>
+            <p class="font-medium text-gray-900">
+              {{ req.patient }}
+            </p>
+            <p class="text-sm text-blue-600">
+              {{ req.bloodGroup }} • {{ req.units }} Unit(s)
+            </p>
+            <p class="text-xs text-gray-400">Dr. {{ req.doctor }}</p>
+          </div>
+
+          <span
+            class="px-4 py-1 text-sm rounded-full"
+            [ngClass]="getRequestStatusClass(req.status)"
+          >
+            {{ req.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Donor Activity -->
+    <div class="bg-white rounded-2xl p-6 shadow-sm">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="font-semibold text-gray-900">Recent Donors</h3>
+        <a class="text-sm text-blue-600 cursor-pointer">View All</a>
+      </div>
+
+      <div class="space-y-3">
+        <div
+          *ngFor="let donor of recentDonors"
+          class="flex justify-between items-center p-4 rounded-xl border border-gray-100 hover:bg-gray-50"
+        >
+          <div>
+            <p class="font-medium text-gray-900">{{ donor.name }}</p>
+            <p class="text-sm text-gray-500">
+              {{ donor.bloodGroup }} • {{ donor.units }} Unit(s)
+            </p>
+          </div>
+
+          <p class="text-sm font-medium text-gray-700">
+            {{ donor.date | date:'dd MMM' }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
