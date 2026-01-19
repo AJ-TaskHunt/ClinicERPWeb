@@ -87,7 +87,6 @@ export class Sidebar {
       active: false,
       children: [
         { label: 'Donors', route: '/donors' },
-        { label: 'Donors/new', route: '/donors/new' },
         { label: 'Collection', route: '/collection' },
         { label: 'Inventory', route: '/inventory' },
         { label: 'Issue', route: '/issue' },
