@@ -3,9 +3,6 @@ import { Dashboard } from './features/dashboard/dashboard';
 import { Layout } from './core/layout/layout';
 import { Home } from './features/home/home';
 import { AddDoctor } from './features/add-doctor/add-doctor';
-import { AddPatient } from './features/Patient/add-patient/add-patient';
-import { AllPatients } from './features/Patient/all-patients/all-patients';
-import { PatientProfile } from './features/Patient/patient-profile/patient-profile';
 
 export const routes: Routes = [
   {
@@ -22,7 +19,16 @@ export const routes: Routes = [
         data: { title: 'Home' }
       },
       {
-        path:'add-doctor',component:AddDoctor
+        path:'add-doctor',component:AddDoctor,
+        data: { title: 'Add Doctor' }
+      },
+      {
+        path:'all-doctors',component:AllDoctors,
+        data: { title: 'All Doctors' }
+      },
+      {
+        path:'doc-profile',component:DocProfile,
+        data: { title: 'Doctor Profile' }
       },
       {
         path: '',

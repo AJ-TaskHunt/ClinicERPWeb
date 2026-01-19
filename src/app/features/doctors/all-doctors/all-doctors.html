@@ -1,0 +1,230 @@
+<div class="bg-[#F5F7FF] p-6 min-h-screen">
+  <!-- Page Card -->
+  <div class="bg-white rounded-xl shadow">
+    <!-- Header -->
+    <div class="flex items-center justify-between bg-[#E6EBFA] px-6 py-4 rounded-t-xl">
+      <div class="flex items-center gap-4">
+        <h2 class="text-lg font-semibold text-gray-800">Doctors</h2>
+
+        <div class="relative">
+          <input
+            type="text"
+            placeholder="Search doctors..."
+            [(ngModel)]="searchText"
+            (input)="applyFilters()"
+            class="pl-10 pr-4 py-2 rounded-lg bg-white border border-gray-300 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+
+          <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <!-- <button class="p-2 rounded-lg hover:bg-blue-100 text-blue-600">☰</button> -->
+        <div class="relative">
+          <!-- <button
+            class="p-2 rounded-lg hover:bg-blue-100 text-blue-600"
+            onclick="document.getElementById('columnDropdown').classList.toggle('hidden')"
+          >
+            ☰
+          </button> -->
+          <button class="p-2 rounded-lg hover:bg-blue-100 text-blue-600" (click)="toggleDropdown()">
+            ☰
+          </button>
+
+          <!-- Dropdown -->
+          <!-- Dropdown -->
+          <div
+            class="absolute right-0 mt-2 w-72 bg-[#F6F6F6] rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.15)] z-50 origin-top-right transition-all duration-200 ease-out"
+            [class.opacity-0]="!dropdownOpen"
+            [class.scale-95]="!dropdownOpen"
+            [class.pointer-events-none]="!dropdownOpen"
+            [class.opacity-100]="dropdownOpen"
+            [class.scale-100]="dropdownOpen"
+          >
+            <!-- Header -->
+            <div class="px-5 py-4 border-b border-black/10">
+              <h3 class="text-sm font-semibold text-gray-800">Show/Hide Column</h3>
+            </div>
+
+            <!-- List -->
+            <div class="max-h-64 overflow-y-auto px-4 py-3 space-y-3 custom-scroll">
+              <label *ngFor="let col of columns" class="flex items-center gap-3 cursor-pointer">
+                <input
+                  type="checkbox"
+                  [(ngModel)]="col.visible"
+                  class="w-5 h-5 rounded-md border-gray-300 text-blue-600"
+                />
+                <span class="text-sm text-gray-700">
+                  {{ col.label }}
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <button class="p-2 rounded-lg hover:bg-green-100 text-green-600">＋</button>
+        <button class="p-2 rounded-lg hover:bg-yellow-100 text-yellow-600">⟳</button>
+        <button class="p-2 rounded-lg hover:bg-blue-100 text-blue-600">⬇</button>
+      </div>
+    </div>
+
+    <!-- Table -->
+    <div class="relative overflow-x-auto">
+      <!-- Sticky Header Wrapper -->
+      <table class="w-full text-sm border-separate border-spacing-0">
+        <!-- HEADER -->
+        <thead class="sticky top-0 z-10 bg-white shadow-[0_1px_0_0_rgba(0,0,0,0.08)]">
+          <tr class="text-gray-600 text-[13px] font-semibold tracking-wide">
+            <th *ngIf="isVisible('department')" class="px-6 py-4 text-left whitespace-nowrap">
+              Department
+            </th>
+
+            <th *ngIf="isVisible('specialization')" class="px-4 py-4 text-left">Specialization</th>
+
+            <th *ngIf="isVisible('availability')" class="px-4 py-4 text-left">Availability</th>
+
+            <th *ngIf="isVisible('mobile')" class="px-4 py-4 text-left">Mobile</th>
+
+            <th *ngIf="isVisible('degree')" class="px-4 py-4 text-left">Degree</th>
+
+            <th *ngIf="isVisible('experience')" class="px-4 py-4 text-left">Experience</th>
+
+            <th *ngIf="isVisible('fee')" class="px-4 py-4 text-left">Fee</th>
+
+            <th *ngIf="isVisible('email')" class="px-4 py-4 text-left">Email</th>
+
+            <th *ngIf="isVisible('rating')" class="px-4 py-4 text-left">Rating</th>
+
+            <th *ngIf="isVisible('location')" class="px-4 py-4 text-left">Clinic</th>
+
+            <th class="px-4 py-4 text-center w-24">Actions</th>
+          </tr>
+        </thead>
+
+        <!-- BODY -->
+        <!-- <tbody class="text-gray-800">
+          <tr class="group transition-all duration-200 hover:bg-[#F5F7FF]">
+            <td *ngIf="isVisible('department')" class="px-6 py-4 font-medium">Urology</td>
+
+            <td *ngIf="isVisible('specialization')" class="px-4 py-4">Prostate</td>
+
+            <td *ngIf="isVisible('availability')" class="px-4 py-4">Mon – Fri</td>
+
+            <td *ngIf="isVisible('mobile')" class="px-4 py-4">
+              <div class="flex items-center gap-2 text-green-600 font-medium">
+                📞 <span class="text-gray-800">1234567</span>
+              </div>
+            </td>
+
+            <td *ngIf="isVisible('degree')" class="px-4 py-4">MBBS, MS</td>
+
+            <td *ngIf="isVisible('experience')" class="px-4 py-4">12 yrs</td>
+
+            <td *ngIf="isVisible('fee')" class="px-4 py-4 font-medium">₹500</td>
+
+            <td *ngIf="isVisible('email')" class="px-4 py-4">
+              <div class="flex items-center gap-2 text-blue-600">
+                ✉ <span class="text-gray-800">john.doe@email.com</span>
+              </div>
+            </td>
+
+            <td *ngIf="isVisible('rating')" class="px-4 py-4">⭐ 4.5</td>
+
+            <td *ngIf="isVisible('location')" class="px-4 py-4">City Hospital</td>
+
+            <td class="px-4 py-4">
+              <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100 transition">
+                <button class="p-2 rounded-md text-blue-600 hover:bg-blue-100">✏</button>
+
+                <button class="p-2 rounded-md text-red-600 hover:bg-red-100">🗑</button>
+              </div>
+            </td>
+          </tr>
+        </tbody> -->
+        <tbody class="text-gray-800">
+          <tr *ngFor="let d of paginatedDoctors" class="group hover:bg-[#F5F7FF] transition">
+            <td class="px-6 py-4 font-medium">{{ d.department }}</td>
+            <td class="px-4 py-4">{{ d.specialization }}</td>
+            <td class="px-4 py-4">{{ d.availability }}</td>
+
+            <td class="px-4 py-4">
+              <div class="flex items-center gap-2 text-green-600">
+                📞 <span class="text-gray-800">{{ d.mobile }}</span>
+              </div>
+            </td>
+
+            <td class="px-4 py-4">{{ d.degree }}</td>
+            <td class="px-4 py-4">{{ d.experience }} yrs</td>
+            <td class="px-4 py-4 font-medium">₹{{ d.fee }}</td>
+
+            <td class="px-4 py-4">
+              <div class="flex items-center gap-2 text-blue-600">
+                ✉ <span class="text-gray-800">{{ d.email }}</span>
+              </div>
+            </td>
+
+            <td class="px-4 py-4">⭐ {{ d.rating }}</td>
+            <td class="px-4 py-4">{{ d.location }}</td>
+
+            <td class="px-4 py-4">
+              <div class="flex justify-center gap-2 opacity-0 group-hover:opacity-100">
+                <button class="p-2 rounded-md hover:bg-blue-100 text-blue-600">✏</button>
+                <button class="p-2 rounded-md hover:bg-red-100 text-red-600">🗑</button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Footer / Pagination -->
+    <!-- <div class="flex items-center justify-end gap-6 px-6 py-4 border-t text-sm">
+      <div class="flex items-center gap-2">
+        <span>Items per page:</span>
+        <select class="border rounded px-2 py-1">
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+        </select>
+      </div>
+
+      <span>1 – 10 of 16</span>
+
+      <div class="flex gap-2">
+        <button class="p-2 rounded hover:bg-gray-100">‹</button>
+        <button class="p-2 rounded hover:bg-gray-100">›</button>
+      </div>
+    </div> -->
+    <div class="flex items-center justify-between px-6 py-4 border-t text-sm">
+      <div class="flex items-center gap-2">
+        <span>Rows per page:</span>
+        <select [(ngModel)]="pageSize" (change)="applyFilters()" class="border rounded px-2 py-1">
+          <option [value]="5">5</option>
+          <option [value]="10">10</option>
+          <option [value]="20">20</option>
+        </select>
+      </div>
+
+      <span> Page {{ currentPage }} of {{ totalPages }} </span>
+
+      <div class="flex gap-2">
+        <button
+          (click)="prevPage()"
+          [disabled]="currentPage === 1"
+          class="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+        >
+          ‹
+        </button>
+
+        <button
+          (click)="nextPage()"
+          [disabled]="currentPage === totalPages"
+          class="p-2 rounded hover:bg-gray-100 disabled:opacity-40"
+        >
+          ›
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
