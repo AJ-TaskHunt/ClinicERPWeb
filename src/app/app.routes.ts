@@ -7,10 +7,13 @@ import { AllDoctors } from './features/doctors/all-doctors/all-doctors';
 import { DocProfile } from './features/doctors/doc-profile/doc-profile';
 import { BloodBank } from './features/blood-bank/blood-bank';
 import { Collection } from './features/blood-bank/collection/collection';
-import { Donors } from './features/donors/donors';
-import { Inventory } from './features//blood-bank/inventory/inventory';
-import { Issue } from './features//blood-bank/issue/issue';
+import { Inventory } from './features/blood-bank/inventory/inventory';
+import { Issue } from './features/blood-bank/issue/issue';
 import { Requests } from './features/blood-bank/requests/requests';
+import { Donors } from './features/donors/donors';
+import { AddPatient } from './features/Patient/add-patient/add-patient';
+import { AllPatients } from './features/Patient/all-patients/all-patients';
+import { PatientProfile } from './features/Patient/patient-profile/patient-profile';
 
 export const routes: Routes = [
   {
@@ -61,6 +64,16 @@ export const routes: Routes = [
         redirectTo: 'dashboard',
         pathMatch: 'full',
       },
+      {
+        path:'add-patient',component:AddPatient
+      },
+      {
+        path:'all-patients',component:AllPatients
+      },
+      {
+        path:'patients/profile',component:PatientProfile
+      }
+      
     ],
   },
 ];
