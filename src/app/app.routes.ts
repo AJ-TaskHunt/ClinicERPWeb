@@ -2,13 +2,15 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './features/dashboard/dashboard';
 import { Layout } from './core/layout/layout';
 import { Home } from './features/home/home';
-import { AddDoctor } from './features/add-doctor/add-doctor';
+import { AddDoctor } from './features/doctors/add-doctor/add-doctor';
+import { AllDoctors } from './features/doctors/all-doctors/all-doctors';
+import { DocProfile } from './features/doctors/doc-profile/doc-profile';
 import { BloodBank } from './features/blood-bank/blood-bank';
+import { Collection } from './features/blood-bank/collection/collection';
 import { Donors } from './features/donors/donors';
-import { Inventory } from './features/inventory/inventory';
-import { Collection } from './features/collection/collection';
-import { Issue } from './features/issue/issue';
-import { Requests } from './features/requests/requests';
+import { Inventory } from './features//blood-bank/inventory/inventory';
+import { Issue } from './features//blood-bank/issue/issue';
+import { Requests } from './features/blood-bank/requests/requests';
 
 export const routes: Routes = [
   {
@@ -25,7 +27,16 @@ export const routes: Routes = [
         data: { title: 'Home' }
       },
       {
-        path:'add-doctor',component:AddDoctor
+        path:'add-doctor',component:AddDoctor,
+        data: { title: 'Add Doctor' }
+      },
+      {
+        path:'all-doctors',component:AllDoctors,
+        data: { title: 'All Doctors' }
+      },
+      {
+        path:'doc-profile',component:DocProfile,
+        data: { title: 'Doctor Profile' }
       },
       {
         path:'blood-bank',component:BloodBank

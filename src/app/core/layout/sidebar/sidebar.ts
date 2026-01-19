@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',
 })
@@ -40,7 +40,7 @@ export class Sidebar {
       label: 'Dashboard',
       route: '/dashboard',
       icon: 'https://api.builder.io/api/v1/image/assets/TEMP/25d1473f78dcc6e3e4b31a8d50d40fe939065491?width=60',
-      active: true,
+      active: false,
     },
     {
       label: 'Patients',
@@ -54,12 +54,12 @@ export class Sidebar {
       active: false,
       expanded: false,
       children: [
-        { label: 'All Doctors', route: '/doctors' },
+        { label: 'All Doctors', route: '/all-doctors' },
         { label: 'Add Doctor', route: '/add-doctor' },
         { label: 'Edit Doctor', route: '/doctors/edit' },
         { label: 'Assign Department', route: '/doctors/department' },
         { label: 'Shift Management', route: '/doctors/shift' },
-        { label: 'Doctor Profile', route: '/doctors/profile' },
+        { label: 'Doctor Profile', route: '/doc-profile' },
       ],
     },
     {
