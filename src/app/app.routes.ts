@@ -2,7 +2,12 @@ import { Routes } from '@angular/router';
 import { Dashboard } from './features/dashboard/dashboard';
 import { Layout } from './core/layout/layout';
 import { Home } from './features/home/home';
-import { AddDoctor } from './features/add-doctor/add-doctor';
+import { AddDoctor } from './features/doctors/add-doctor/add-doctor';
+import { AllDoctors } from './features/doctors/all-doctors/all-doctors';
+import { DocProfile } from './features/doctors/doc-profile/doc-profile';
+import { AddPatient } from './features/Patient/add-patient/add-patient';
+import { AllPatients } from './features/Patient/all-patients/all-patients';
+import { PatientProfile } from './features/Patient/patient-profile/patient-profile';
 
 export const routes: Routes = [
   {
