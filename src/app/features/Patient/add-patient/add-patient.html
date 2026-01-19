@@ -1,0 +1,135 @@
+  <div class="bg-[#c3cee8] min-h-screen p-4 sm:p-6">
+  <div class="max-w-7xl mx-auto space-y-6">
+    <!-- ================= PAGE HEADER ================= -->
+    <div class="bg-white rounded-2xl p-5 shadow-sm">
+      <h2 class="text-lg sm:text-xl font-semibold text-gray-900">Add Patient</h2>
+      <p class="text-sm text-gray-500 mt-1">
+        Fill all required information to register a new patient
+      </p>
+    </div>
+
+
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+  <!-- LEFT FORM -->
+  <div class="lg:col-span-8 space-y-6">
+
+    <!-- PERSONAL INFORMATION -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="p-5">
+        <h6 class="text-blue-600 font-semibold mb-4 flex items-center gap-2">
+          <i class="bi bi-person"></i> Personal Information
+        </h6>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4 mb-4">
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium mb-1" >
+              Full Name <span class="text-red-500">*</span>
+            </label>
+            <input type="text" placeholder="Enter Full Name" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
+          </div>
+
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium mb-1">DOB</label>
+            <input type="date" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
+          </div>
+
+          <div class="md:col-span-3">
+            <label class="block text-sm font-medium mb-1">Gender</label>
+            <select class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+              <option value="" disabled selected>Select</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-4">
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium mb-1">
+              Phone <span class="text-red-500">*</span>
+            </label>
+            <input type="text" placeholder="Enter Mobile No" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300" />
+          </div>
+
+          <div class="md:col-span-6">
+            <label class="block text-sm font-medium mb-1">Blood Group</label>
+            <select class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300">
+              <option value="" disabled selected>Select Blood Group</option>
+              <option>A+</option>
+              <option>A-</option>
+              <option>B+</option>
+              <option>B-</option>
+              <option>AB+</option>
+              <option>AB-</option>
+              <option>O+</option>
+              <option>O-</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MEDICAL INFORMATION -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="p-5">
+        <h6 class="text-blue-600 font-semibold mb-4 flex items-center gap-2">
+          <i class="bi bi-heart-pulse"></i> Medical Information
+        </h6>
+
+        <label class="block text-sm font-medium mb-1">Allergies</label>
+        <textarea rows="2" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"></textarea>
+      </div>
+    </div>
+
+    <!-- ADDRESS INFORMATION -->
+    <div class="bg-white rounded-lg shadow">
+      <div class="p-5">
+        <h6 class="text-blue-600 font-semibold mb-4 flex items-center gap-2">
+          <i class="bi bi-geo-alt"></i> Address Information
+        </h6>
+
+        <label class="block text-sm font-medium mb-1">Address</label>
+        <textarea rows="2" class="w-full border rounded px-3 py-2 focus:outline-none focus:ring focus:ring-blue-300"></textarea>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT SUMMARY -->
+  <div class="lg:col-span-4">
+    <div class="bg-white rounded-lg shadow">
+      <div class="p-5">
+        <h6 class="font-semibold mb-4">Patient Summary</h6>
+
+        <p class="mb-2">
+          <strong>Name:</strong>
+          <span class="text-gray-500 ml-1">Auto</span>
+        </p>
+
+        <p class="mb-2">
+          <strong>Phone:</strong>
+          <span class="text-gray-500 ml-1">Auto</span>
+        </p>
+
+        <p class="mb-2">
+          <strong>Blood Group:</strong>
+          <span class="text-gray-500 ml-1">Auto</span>
+        </p>
+
+        <p class="text-gray-400 text-sm">Created Date: Auto</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ACTION BUTTONS -->
+<div class="mt-6 flex gap-3">
+  <button type="submit" class="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700">
+    Save Patient
+  </button>
+
+  <button type="button" class="bg-red-600 text-white px-5 py-2 rounded hover:bg-red-700">
+    Reset
+  </button>
+</div>

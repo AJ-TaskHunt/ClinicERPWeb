@@ -1,0 +1,198 @@
+<div class="bg-slate-100 min-h-screen p-6">
+
+  <!-- BREADCRUMB -->
+  <div class="mb-4 text-sm text-gray-500">
+    Profile › Patients › Profile
+  </div>
+
+  <div class="grid grid-cols-12 gap-6">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-span-12 lg:col-span-4 space-y-6">
+
+      <!-- PROFILE CARD -->
+      <div class="bg-white rounded-xl shadow-sm p-6 text-center">
+        <img
+          src="https://i.pravatar.cc/120"
+          class="w-28 h-28 rounded-full mx-auto border-4 border-blue-500"
+        />
+
+        <h3 class="mt-4 text-lg font-semibold text-gray-800">
+          Sarah Smith
+        </h3>
+        <p class="text-sm text-gray-500">Patient ID: P001</p>
+
+        <span
+          class="inline-block mt-3 px-4 py-1 text-sm rounded-full bg-green-100 text-green-700">
+          Discharged
+        </span>
+      </div>
+
+      <!-- PERSONAL INFORMATION -->
+      <div class="bg-white rounded-xl shadow-sm p-5">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          👤 Personal Information
+        </h4>
+
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between"><span>Full Name</span><span>Sarah Smith</span></div>
+          <div class="flex justify-between"><span>Gender</span><span>Female</span></div>
+          <div class="flex justify-between"><span>Age</span><span>35 years</span></div>
+          <div class="flex justify-between"><span>Date of Birth</span><span>1989-05-15</span></div>
+          <div class="flex justify-between"><span>Marital Status</span><span>Married</span></div>
+          <div class="flex justify-between"><span>National ID</span><span>NAT123456789</span></div>
+        </div>
+      </div>
+
+      <!-- CONTACT & ADDRESS -->
+      <div class="bg-white rounded-xl shadow-sm p-5">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          📞 Contact & Address
+        </h4>
+
+        <div class="space-y-2 text-sm">
+          <div>Email: sarah.smith@example.com</div>
+          <div>Phone: +1 (123) 456-7890</div>
+          <div>Address: 123 Main Street, Anytown, CA 94538</div>
+        </div>
+
+        <hr class="my-4">
+
+        <div class="space-y-2 text-sm">
+          <div class="font-medium">Emergency Contact</div>
+          <div>Name: John Smith</div>
+          <div>Relation: Husband</div>
+          <div>Phone: +1 (987) 654-3210</div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-span-12 lg:col-span-8 space-y-6">
+
+      <!-- MEDICAL INFORMATION -->
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          ➕ Medical Information
+        </h4>
+
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>
+            <span class="text-gray-500">Blood Group</span>
+            <div class="mt-1 inline-block px-3 py-1 border rounded">A+</div>
+          </div>
+
+          <div>
+            <span class="text-gray-500">Allergies</span>
+            <div class="mt-1 flex gap-2">
+              <span class="px-3 py-1 rounded border">Penicillin</span>
+              <span class="px-3 py-1 rounded border">Peanuts</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="text-gray-500">Chronic Conditions</span>
+            <div class="mt-1 flex gap-2">
+              <span class="px-3 py-1 rounded border">Asthma</span>
+              <span class="px-3 py-1 rounded border">Hypertension</span>
+            </div>
+          </div>
+
+          <div>
+            <span class="text-gray-500">Current Medications</span>
+            <ul class="list-disc list-inside mt-1">
+              <li>Albuterol</li>
+              <li>Lisinopril</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-4 text-sm">
+          <span class="text-gray-500">Past Medical History</span>
+          <p class="mt-1">
+            Appendectomy in 2015, Fractured wrist in 2018
+          </p>
+        </div>
+      </div>
+
+      <!-- ADMISSION DETAILS -->
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          🏥 Admission Details
+        </h4>
+
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>Admission Date: 2023-11-10</div>
+          <div>Discharge Date: 2023-11-15</div>
+          <div>Doctor Assigned: Dr. Jacob Ryan</div>
+          <div>Ward / Room: W-103 / R-303</div>
+          <div class="col-span-2">
+            Reason for Admission: Severe asthma attack
+          </div>
+          <div class="col-span-2">
+            Treatment: Respiratory therapy and medication adjustment
+          </div>
+        </div>
+      </div>
+
+      <!-- INSURANCE DETAILS -->
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          🛡 Insurance Details
+        </h4>
+
+        <div class="grid grid-cols-2 gap-4 text-sm">
+          <div>Insurance Provider: HealthCare Insurance Co.</div>
+          <div>Policy Number: HCI123456789</div>
+          <div>Policy Type: Individual</div>
+          <div>Coverage Period: 2024-01-01 to 2025-01-01</div>
+          <div>Coverage Amount: $500,000</div>
+          <div>Co-payment: 15%</div>
+        </div>
+      </div>
+
+      <!-- VISIT HISTORY -->
+      <div class="bg-white rounded-xl shadow-sm p-6">
+        <h4 class="font-semibold text-gray-800 mb-4">
+          🕒 Visit History
+        </h4>
+
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="border-b text-gray-600">
+              <tr>
+                <th class="py-2 text-left">Date</th>
+                <th class="py-2 text-left">Doctor</th>
+                <th class="py-2 text-left">Treatment</th>
+                <th class="py-2 text-left">Charges ($)</th>
+                <th class="py-2 text-left">Outcome</th>
+                <th class="py-2 text-center">Actions</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y">
+              <tr>
+                <td class="py-2">2023-11-10</td>
+                <td>Dr. Jacob Ryan</td>
+                <td>Respiratory therapy</td>
+                <td>250</td>
+                <td>Improved</td>
+                <td class="text-center">👁 ✏️</td>
+              </tr>
+              <tr>
+                <td class="py-2">2023-08-22</td>
+                <td>Dr. Sophia Chen</td>
+                <td>Blood pressure check</td>
+                <td>120</td>
+                <td>Stable</td>
+                <td class="text-center">👁 ✏️</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</div>

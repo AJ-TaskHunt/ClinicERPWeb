@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { expand } from 'rxjs';
 
 @Component({
   selector: 'app-sidebar',
@@ -47,6 +48,12 @@ export class Sidebar {
       route: '/patients',
       icon: 'https://api.builder.io/api/v1/image/assets/TEMP/7d8416b76528d917000a627a1fd75aa4e7f3d726?width=70',
       active: false,
+      expanded: false,
+      children: [
+        { label: 'All Patients', route: '/all-patients' },
+        { label: 'Add Patient', route: '/add-patient' },
+        { label: 'Patient Profile', route: '/patients/profile' }
+      ],
     },
     {
       label: 'Doctor',
