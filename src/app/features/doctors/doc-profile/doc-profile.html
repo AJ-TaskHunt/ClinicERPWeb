@@ -1,0 +1,149 @@
+<div class="space-y-6 bg-[#F5F7FF] p-6 min-h-screen">
+  <!-- EDIT BUTTON -->
+  <div class="flex justify-end">
+    <button class="px-4 py-2 text-sm border rounded-lg hover:bg-gray-50" (click)="toggleEdit()">
+      {{ isEditMode ? 'Cancel' : '✏️ Edit Profile' }}
+    </button>
+  </div>
+
+  <!-- PROFILE HEADER -->
+  <div class="bg-white rounded-2xl p-6 shadow-sm">
+    <div class="flex items-start gap-6">
+      <img [src]="doctor.avatar" class="w-24 h-24 rounded-full border-4 border-white shadow" />
+
+      <div class="flex-1">
+        <h2 *ngIf="!isEditMode" class="text-2xl font-semibold">
+          {{ doctor.name }}
+        </h2>
+
+        <input
+          *ngIf="isEditMode"
+          [(ngModel)]="doctor.name"
+          class="text-2xl font-semibold border-b outline-none w-full"
+        />
+
+        <p class="text-gray-500">{{ doctor.degree }}</p>
+
+        <div class="flex flex-wrap gap-6 mt-3 text-sm text-gray-600">
+          <span>📍 {{ doctor.address }}</span>
+          <span>📞 {{ doctor.phone }}</span>
+          <span>✉️ {{ doctor.email }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- METRICS (UNCHANGED) -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div *ngFor="let m of metrics" class="bg-white rounded-2xl p-6 shadow-sm">
+      <h3 class="text-2xl font-bold">{{ m.value }}</h3>
+      <p class="text-sm text-gray-500">{{ m.label }}</p>
+    </div>
+  </div>
+
+  <!-- BOTTOM SECTION -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+    <!-- LEFT: ABOUT -->
+    <div class="lg:col-span-4">
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <h3 class="font-semibold mb-4">About</h3>
+
+        <p *ngIf="!isEditMode" class="text-sm text-gray-600">
+          {{ doctor.about }}
+        </p>
+
+        <textarea
+          *ngIf="isEditMode"
+          [(ngModel)]="doctor.about"
+          rows="4"
+          class="w-full border rounded-lg p-3"
+        ></textarea>
+      </div>
+    </div>
+
+    <!-- RIGHT: TABS + CONTENT -->
+    <div class="lg:col-span-8">
+      <div class="bg-white rounded-2xl p-6 shadow-sm">
+        <!-- TABS -->
+        <div class="flex gap-6 border-b pb-3 text-sm font-medium">
+          <button
+            (click)="setTab('about')"
+            [class.text-indigo-600]="activeTab === 'about'"
+            [class.border-b-2]="activeTab === 'about'"
+            class="pb-2"
+          >
+            About Me
+          </button>
+
+          <button
+            (click)="setTab('education')"
+            [class.text-indigo-600]="activeTab === 'education'"
+            [class.border-b-2]="activeTab === 'education'"
+            class="pb-2"
+          >
+            Education
+          </button>
+
+          <button
+            (click)="setTab('experience')"
+            [class.text-indigo-600]="activeTab === 'experience'"
+            [class.border-b-2]="activeTab === 'experience'"
+            class="pb-2"
+          >
+            Experience
+          </button>
+
+          <button
+            (click)="setTab('certifications')"
+            [class.text-indigo-600]="activeTab === 'certifications'"
+            [class.border-b-2]="activeTab === 'certifications'"
+            class="pb-2"
+          >
+            Certifications
+          </button>
+        </div>
+
+        <!-- TAB CONTENT -->
+        <div class="mt-6 text-sm text-gray-600">
+          <!-- ABOUT -->
+          <div *ngIf="activeTab === 'about'">
+            {{ doctor.about }}
+          </div>
+
+          <!-- EDUCATION -->
+          <div *ngIf="activeTab === 'education'">
+            <p *ngIf="!isEditMode">{{ doctor.education }}</p>
+            <textarea
+              *ngIf="isEditMode"
+              [(ngModel)]="doctor.education"
+              rows="3"
+              class="w-full border rounded-lg p-3"
+            ></textarea>
+          </div>
+
+          <!-- EXPERIENCE -->
+          <div *ngIf="activeTab === 'experience'">
+            <p *ngIf="!isEditMode">{{ doctor.experience }}</p>
+            <textarea
+              *ngIf="isEditMode"
+              [(ngModel)]="doctor.experience"
+              rows="3"
+              class="w-full border rounded-lg p-3"
+            ></textarea>
+          </div>
+
+          <!-- CERTIFICATIONS -->
+          <div *ngIf="activeTab === 'certifications'">
+            <p *ngIf="!isEditMode">{{ doctor.certifications }}</p>
+            <textarea
+              *ngIf="isEditMode"
+              [(ngModel)]="doctor.certifications"
+              rows="3"
+              class="w-full border rounded-lg p-3"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

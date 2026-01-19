@@ -79,3 +79,7 @@
          focus:outline-none focus:ring-1 focus:ring-blue-500
          focus:border-blue-500;
 }
+
+table {
+  border-collapse: separate;
+}

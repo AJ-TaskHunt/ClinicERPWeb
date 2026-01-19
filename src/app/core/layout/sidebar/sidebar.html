@@ -15,7 +15,7 @@
       [class.opacity-0]="collapsed"
       [class.w-0]="collapsed"
     >
-      <span class="text-blue-600/100 dark:text-sky-400/100">Clinic ERP</span>
+      <span class="text-blue-600 dark:text-sky-400">Clinic ERP</span>
     </span>
   </div>
 
@@ -91,16 +91,17 @@
       <div
         (click)="toggleMenu(item)"
         class="group flex items-center justify-between px-5 py-3 rounded-lg cursor-pointer text-[15px] font-medium text-gray-800 hover:bg-[#F3F6FD] transition-colors"
-      >
+        [routerLink]="item.route" routerLinkActive="true"
+      > 
         <div class="flex items-center gap-3">
-          <a routerLink="{{ item.route }}"><img [src]="item.icon" class="w-5 h-5" /></a>
+          <a [routerLink]="item.route"><img [src]="item.icon" class="w-5 h-5" /></a>
 
           <span
             class="transition-all whitespace-nowrap"
             [class.opacity-0]="collapsed"
             [class.w-0]="collapsed"
           >
-            <a routerLink="{{ item.route }}">{{ item.label }}</a>
+            <a [routerLink]="item.route">{{ item.label }}</a>
           </span>
         </div>
 
